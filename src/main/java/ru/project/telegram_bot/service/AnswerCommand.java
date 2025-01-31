@@ -1,22 +1,37 @@
 package ru.project.telegram_bot.service;
 
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Component;
+
+@Component
+@AllArgsConstructor
 public class AnswerCommand {
+   private RandomService randomService;
 
+    public String array_numbers() {
+        int size = randomService.getNumber(10,20);
 
-    public static String array_numbers() {
-        String response = """
-                        int [] array = {1,2,3,4,5,6,7,8,9,10};
-                        """.trim();
-        return response;
+        StringBuilder stringBuilder = new StringBuilder();
+
+        stringBuilder.append("int [] arrayNumber = {");
+        for (int i = 0; i <= size; i++) {
+            if (i < size){
+                stringBuilder.append(randomService.getNumber(1,5000)).append(",");
+            }else {
+                stringBuilder.append(randomService.getNumber(1,5000)).append("};");
+            }
+        }
+        return stringBuilder.toString();
 
     }
 
-    public static String menu() {
+    public String menu() {
         String commands =
                 """
                         ----arrays----
                         /array_number
                         /array_names
+                        /array_city
                         
                         ----list----
                         /list_nums

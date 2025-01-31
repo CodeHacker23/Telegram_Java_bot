@@ -1,5 +1,6 @@
 package ru.project.telegram_bot.bot;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -13,12 +14,16 @@ import ru.project.telegram_bot.service.Command;
 @Component
 public class Bot extends TelegramLongPollingBot {
 
+    @Autowired
+    private AnswerCommand answerCommand;
+
     @Value("${bot.username}")
     private String botName;
 
     public Bot(@Value("${bot.token}") String botToken) {
         super(botToken);
     }
+
 
     @Override
     public String getBotUsername() {
@@ -35,8 +40,8 @@ public class Bot extends TelegramLongPollingBot {
         String answerMessage = "";
 
         switch (text){
-            case Command.START ->   answerMessage = AnswerCommand.menu();
-            case Command.ARRAY_NUM ->   answerMessage = AnswerCommand.array_numbers();
+            case Command.START ->   answerMessage = answerCommand.menu();
+            case Command.ARRAY_NUM ->   answerMessage = answerCommand.array_numbers();
         }
 
 
