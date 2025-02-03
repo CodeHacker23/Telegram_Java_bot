@@ -10,6 +10,8 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import ru.project.telegram_bot.service.AnswerCommand;
 import ru.project.telegram_bot.service.Command;
 
+import java.util.Arrays;
+
 
 @Component
 public class Bot extends TelegramLongPollingBot {
@@ -33,15 +35,25 @@ public class Bot extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
+        //если это не сообщение и не текст то выъодим из мтеода
         if (!update.hasMessage() && update.getMessage().hasText()) return;
-        String text = update.getMessage().getText();
-        Long chatId = update.getMessage().getChatId();
 
-        String answerMessage = "";
+        String text = update.getMessage().getText(); //запрос
+        Long chatId = update.getMessage().getChatId(); //id чата
 
+        String answerMessage = ""; // для ответа
+
+        /**
+         * проверяем запрос для генерации ответа
+         *
+         * @text сообщение от пользователя
+         * @сommand... Класс с командами (строки в переменных)
+         * @answerCommand объект для генерации ответа (вернет строку ответа)
+         */
         switch (text){
             case Command.START ->   answerMessage = answerCommand.menu();
             case Command.ARRAY_NUM ->   answerMessage = answerCommand.array_numbers();
+            case  Command.ARRAY_NAMES -> answerMessage = answerCommand.array_names();
         }
 
 

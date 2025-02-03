@@ -16,5 +16,7 @@ public class SpringConfig {
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
         telegramBotsApi.registerBot(bot);
         return telegramBotsApi;
+
+
     }
 }
