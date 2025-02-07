@@ -52,7 +52,7 @@ public class AnswerCommand {
                     break;
                 }
             }
-            stringBuilder.append( names[indexRandom]);
+            stringBuilder.append("\"").append( names[indexRandom]).append("\"");
             if (i == size-1) stringBuilder.append("};");
             else stringBuilder.append(",");
         }
@@ -64,6 +64,8 @@ public class AnswerCommand {
     public String menu() {
         String commands =
                 """
+                        ----Admin-----
+                        /statistic
                         ----arrays----
                         /array_number
                         /array_names
