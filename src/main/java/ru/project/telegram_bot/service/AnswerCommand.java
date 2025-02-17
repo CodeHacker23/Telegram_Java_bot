@@ -52,11 +52,61 @@ public class AnswerCommand {
                     break;
                 }
             }
-            stringBuilder.append("\"").append( names[indexRandom]).append("\"");
+            stringBuilder.append( names[indexRandom]);
             if (i == size-1) stringBuilder.append("};");
             else stringBuilder.append(",");
         }
         return stringBuilder.toString();
+    }
+
+    public String getClassCity(){
+        return """
+                import lombok.AllArgsConstructor;
+                import lombok.Data;
+                
+                @Data
+                @AllArgsConstructor
+                public class City {
+                    private Long id;
+                    private String name;
+                    private long population;
+                    private String timeZone;
+                }
+                """;
+    }
+
+    public String array_city(){
+        return """
+        City[] cities = new City[] {
+                new City(1L, "Москва", 12000000, "UTC+3"),
+                new City(2L, "Санкт-Петербург", 5400000, "UTC+3"),
+                new City(3L, "Новосибирск", 1600000, "UTC+7"),
+                new City(4L, "Екатеринбург", 1500000, "UTC+5"),
+                new City(5L, "Казань", 1250000, "UTC+3"),
+                new City(6L, "Нижний Новгород", 1250000, "UTC+3"),
+                new City(7L, "Челябинск", 1200000, "UTC+5"),
+                new City(8L, "Омск", 1170000, "UTC+6"),
+                new City(9L, "Самара", 1150000, "UTC+4"),
+                new City(10L, "Ростов-на-Дону", 1100000, "UTC+3")
+        }
+        """.trim();
+    }
+
+    public String list_city(){
+        return """
+                 List<City> listCity = new ArrayList<>();
+                        listCity.add(new City(1L, "Москва", 12000000, "UTC+3"));
+                        listCity.add(new City(2L, "Санкт-Петербург", 5400000, "UTC+3"));
+                        listCity.add(new City(3L, "Новосибирск", 1600000, "UTC+7"));
+                        listCity.add(new City(4L, "Екатеринбург", 1500000, "UTC+5"));
+                        listCity.add(new City(5L, "Казань", 1250000, "UTC+3"));
+                        listCity.add(new City(6L, "Нижний Новгород", 1250000, "UTC+3"));
+                        listCity.add(new City(7L, "Челябинск", 1200000, "UTC+5"));
+                        listCity.add(new City(8L, "Омск", 1170000, "UTC+6"));
+                        listCity.add(new City(9L, "Самара", 1150000, "UTC+4"));
+                        listCity.add(new City(10L, "Ростов-на-Дону", 1100000, "UTC+3"));
+               
+                """.trim();
     }
 
 
@@ -64,8 +114,6 @@ public class AnswerCommand {
     public String menu() {
         String commands =
                 """
-                        ----Admin-----
-                        /statistic
                         ----arrays----
                         /array_number
                         /array_names
@@ -74,12 +122,14 @@ public class AnswerCommand {
                         ----list----
                         /list_nums
                         /list_names
+                        /list_city
                         /list_users
+                        /list_student
                         
                         ----clases----
+                        /class_city
                         /class_user
-                        /class_auto
-                        /class_student               
+                        /class_student
                         
                         """.trim();
 
