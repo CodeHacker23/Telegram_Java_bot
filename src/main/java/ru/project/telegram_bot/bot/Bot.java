@@ -57,6 +57,8 @@ public class Bot extends TelegramLongPollingBot {
             case Command.CITY -> answerMessage = answerCommand.getClassCity();
             case  Command.ARRAY_CITY -> answerMessage = answerCommand.array_city();
             case Command.LIST_CITY -> answerMessage=answerCommand.list_city();
+            case Command.LIST_NAMS ->  answerMessage = answerCommand.list_nums();
+
 
         }
 

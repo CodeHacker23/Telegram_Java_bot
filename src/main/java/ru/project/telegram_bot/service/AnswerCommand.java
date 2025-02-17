@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 
 @Component
@@ -107,6 +108,18 @@ public class AnswerCommand {
                         listCity.add(new City(10L, "Ростов-на-Дону", 1100000, "UTC+3"));
                
                 """.trim();
+    }
+
+    public String list_nums(){
+        List<Integer> list = new ArrayList<>();
+        Random random = new Random();
+        for (int i = 0; i < random.nextInt(10,30); i++) {
+            list.add(random.nextInt(1,1000));
+        }
+        String answer = "List<Integer> list = Arrays.asList " +  list.toString()
+                .replaceAll("\\[","(").replaceAll("]",")") + ";";
+
+        return answer;
     }
 
 
